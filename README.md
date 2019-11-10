@@ -1,4 +1,4 @@
-# egg-qiniu
+# egg-qiniu-uploader
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -27,7 +27,7 @@ Description here.
 ## Install
 
 ```bash
-$ npm i egg-qiniu --save
+$ npm i egg-qiniu-uploader --save
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ $ npm i egg-qiniu --save
 // {app_root}/config/plugin.js
 exports.qiniu = {
   enable: true,
-  package: 'egg-qiniu',
+  package: 'egg-qiniu-uploader',
 };
 ```
 
@@ -44,7 +44,15 @@ exports.qiniu = {
 
 ```js
 // {app_root}/config/config.default.js
-exports.qiniu = {
+const qiniu = require('qiniu');
+
+exports.qiniuConfig = {
+  accessKey: '',
+  secretKey: '',
+  bucket: '',
+  zone: qiniu.zone.Zone_z2,
+  useHttpsDomain: true,
+  useCdnDomain: true,
 };
 ```
 
