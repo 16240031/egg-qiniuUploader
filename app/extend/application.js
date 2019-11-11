@@ -1,13 +1,13 @@
 'use strict';
 const qiniu = require('qiniu');
 module.exports = {
-  createUploadToken() {
+  createUploadToken(opt) {
     const { config } = this;
-    const accessKey = config.qiniuConfig.accessKey;
-    const secretKey = config.qiniuConfig.secretKey;
+    const accessKey = opt.accessKey || config.qiniuConfig.accessKey;
+    const secretKey = opt.secretKey || config.qiniuConfig.secretKey;
     const mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
     const uploadStrategy = {
-      scope: config.qiniuConfig.bucket,
+      scope: opt.bucket || config.qiniuConfig.bucket,
       isPrefixalScope: 1,
       expires: config.qiniuConfig.expires,
       insertOnly: 1,
